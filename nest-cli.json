@@ -1,4 +1,38 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "plugins": [
+      "@nestjs/swagger/plugin"
+    ]
+  },
+  "projects": {
+    "db": {
+      "type": "library",
+      "root": "libs/db",
+      "entryFile": "index",
+      "sourceRoot": "libs/db/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/db/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    },
+    "authen": {
+      "type": "library",
+      "root": "libs/authen",
+      "entryFile": "index",
+      "sourceRoot": "libs/authen/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/authen/tsconfig.lib.json"
+      }
+    }
+  }
 }

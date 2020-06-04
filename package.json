@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -23,18 +23,24 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4",
     "@nestjs/jwt": "^7.0.0",
     "@nestjs/passport": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.7",
     "@typegoose/typegoose": "^7.1.2",
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.2",
     "mongoose": "^5.9.15",
+    "nestjs-mongoose-crud": "^2.0.0",
+    "nestjs-typegoose": "^7.1.26",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.4",
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
@@ -68,12 +74,24 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "@libs/db/(.*)": "<rootDir>/libs/db/src/$1",
+      "@libs/db": "<rootDir>/libs/db/src",
+      "@libs/utils/(.*)": "<rootDir>/libs/utils/src/$1",
+      "@libs/utils": "<rootDir>/libs/utils/src",
+      "@libs/auth/(.*)": "<rootDir>/libs/auth/src/$1",
+      "@libs/auth": "<rootDir>/libs/auth/src"
+    }
   }
 }

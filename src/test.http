@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:8005
+
+
+# @name token
+POST {{baseUrl}}/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "changeme"
+}
+
+###
+
+@authToken = {{token.response.body.access_token}}
+
+#
+GET {{baseUrl}}/profile HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
