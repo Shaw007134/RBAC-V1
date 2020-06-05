@@ -28,9 +28,7 @@ export class UsersService {
   }
 
   async createUser(user: CreateUserDto) {
-    console.log(user);
     const res = await this.userModel.create(user);
-    console.log(res)
     return res;
   }
 

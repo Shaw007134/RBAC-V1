@@ -6,7 +6,7 @@ export type RoleMenuDocument = DocumentType<RoleMenu>;
 
 export class RoleMenu {
   @prop({ required: true })
-  userId: string;
+  userId: number;
   @prop({ required: true })
-  menuId: string;
+  menuId: number;
 }

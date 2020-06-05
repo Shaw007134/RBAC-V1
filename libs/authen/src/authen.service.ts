@@ -6,7 +6,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from '../../../src/users/users.service';
-import { compareSync, hash } from 'bcryptjs';
+import { compareSync,  } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AuthenService {
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.usersService.getUserByName(username);
     if (user) {
-      if (compareSync(password, user.password)) {
+      if (compareSync(password, String(user.password))) {
         return user;
       }
     }
@@ -45,11 +45,9 @@ export class AuthenService {
   }
 
   async register(user: any) {
-    const hashedPassword = await hash(user.password, 10);
     try {
       const createdUser = await this.usersService.createUser({
         ...user,
-        password: hashedPassword,
         roles: [],
       });
       return createdUser;

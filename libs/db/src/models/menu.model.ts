@@ -20,4 +20,6 @@ export class Menu {
   createdAt;
   @prop({ select: false })
   updatedAt;
+  @prop({ index: true })
+  id;
 }

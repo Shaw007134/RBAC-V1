@@ -10,17 +10,19 @@ import { JwtStrategy } from './jwt.strategy';
 import { JwtAdminStrategy } from './jwtAdmin.strategy';
 @Global()
 @Module({
-  imports: [UsersModule,
+  imports: [
+    UsersModule,
     PassportModule,
     JwtModule.registerAsync({
       useFactory() {
         return {
           secret: jwtConstants.secret,
-          signOptions: { expiresIn: '600s' },
+          signOptions: { expiresIn: 60 * 60 * 24 + 's' },
         };
       },
-    }),],
-  providers: [AuthenService, LocalStrategy, JwtStrategy, JwtAdminStrategy ],
+    }),
+  ],
+  providers: [AuthenService, LocalStrategy, JwtStrategy, JwtAdminStrategy],
   exports: [AuthenService],
 })
 export class AuthenModule {}

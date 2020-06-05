@@ -21,11 +21,16 @@ export class User {
     },
   })
   password: string;
+  @prop({ select: true })
   email: string;
+  @prop({ select: true })
   roles: [];
+  @prop({ select: true })
   isEnabled: boolean;
   @prop({ select: false })
   createdAt;
   @prop({ select: false })
   updatedAt;
+  @prop({ index: true })
+  id;
 }
